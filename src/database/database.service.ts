@@ -31,7 +31,7 @@ export class DatabaseService implements OnModuleInit {
   /**
    * connection 가져오기
    */
-  async getConnection() {
+  async getDbConnection() {
     return await this.CP.getConnection();
   }
 

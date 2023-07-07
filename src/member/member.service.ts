@@ -12,7 +12,7 @@ export class MemberService {
 
   async getMember(memberpkey: number) {
     try {
-      this.connection = await this.databaseService.getConnection();
+      this.connection = await this.databaseService.getDbConnection();
       const memberSet = await this.memberModel.getMember(
         this.connection,
         memberpkey,
@@ -32,15 +32,14 @@ export class MemberService {
 
   async signUpMember(signUpDto: any) {
     try {
-      this.connection = await this.databaseService.getConnection();
+      this.connection = await this.databaseService.getDbConnection();
       this.connection.beginTransaction();
 
-      const result = await this.memberModel.signUp(this.connection, signUpDto);
+      await this.memberModel.signUp(this.connection, signUpDto);
 
       this.connection.commit();
       return true;
     } catch (err) {
-      console.log(err);
       if (err.name === 'DBError') {
         this.connection.rollback();
       }
