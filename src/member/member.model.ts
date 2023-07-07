@@ -14,7 +14,7 @@ export class MemberModel {
    * @param connection
    * @param memberpkey
    */
-  async getMember(connection, memberpkey) {
+  async getMember(connection: any, memberpkey: number) {
     try {
       this.sql = `select * from member where memberpkey=?;`;
       this.params = [memberpkey];

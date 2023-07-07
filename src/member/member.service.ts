@@ -10,7 +10,7 @@ export class MemberService {
     private readonly memberModel: MemberModel,
   ) {}
 
-  async getMember(memberpkey) {
+  async getMember(memberpkey: number) {
     try {
       this.connection = await this.databaseService.getConnection();
       const memberSet = await this.memberModel.getMember(
