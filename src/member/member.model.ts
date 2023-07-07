@@ -3,30 +3,28 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MemberModel {
-  private connection;
   private sql: string;
   private params: any[];
 
+  // 생성자
   constructor(private readonly databaseService: DatabaseService) {}
 
   /**
    * 회원 조회
+   * @param connection
    * @param memberpkey
    */
-  async getMember(memberpkey) {
+  async getMember(connection, memberpkey) {
     try {
-      this.connection = await this.databaseService.getConnection();
       this.sql = `select * from member where memberpkey=?;`;
       this.params = [memberpkey];
       return await this.databaseService.dbQuery(
-        this.connection,
+        connection,
         this.sql,
         this.params,
       );
     } catch (err) {
       throw err;
-    } finally {
-      this.connection.release();
     }
   }
 }
