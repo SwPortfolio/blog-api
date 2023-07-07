@@ -9,7 +9,13 @@ import message from './message';
  * @param body : object statusCode = 200: body로 활용, statusCode = 500: error로 활용 ex) {userpkey: 1, username: ''}
  * @returns {*}
  */
-export const response = (res, statusCode, resCode, msg = '', body = {}) => {
+export const response = (
+  res: any,
+  statusCode: number,
+  resCode: string,
+  msg = '',
+  body = {},
+) => {
   if (statusCode === 500) {
     return res.status(statusCode).json({
       resCode: resCode,

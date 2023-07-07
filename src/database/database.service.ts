@@ -47,6 +47,7 @@ export class DatabaseService implements OnModuleInit {
 
       return querySet[0];
     } catch (err) {
+      err.name = 'DBError';
       throw err;
     }
   }

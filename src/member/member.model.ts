@@ -27,4 +27,22 @@ export class MemberModel {
       throw err;
     }
   }
+
+  async signUp(connection: any, signUpDto) {
+    try {
+      this.sql = `insert into member (memberemail, memberpwd, nickname, activeyn, deleteyn, regdate, deletedate) values (?, ?, ?, 'N', 'N', now(), null)`;
+      this.params = [
+        signUpDto.memberemail,
+        signUpDto.memberpwd,
+        signUpDto.nickname,
+      ];
+      return await this.databaseService.dbQuery(
+        connection,
+        this.sql,
+        this.params,
+      );
+    } catch (err) {
+      throw err;
+    }
+  }
 }
