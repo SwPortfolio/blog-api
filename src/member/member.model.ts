@@ -1,5 +1,6 @@
 import { DatabaseService } from '../database/database.service';
 import { Injectable } from '@nestjs/common';
+import { SignUpMemberDto } from './member.dto';
 
 @Injectable()
 export class MemberModel {
@@ -28,7 +29,7 @@ export class MemberModel {
     }
   }
 
-  async signUp(connection: any, signUpDto) {
+  async signUp(connection: any, signUpDto: SignUpMemberDto) {
     try {
       this.sql = `insert into member (memberemail, memberpwd, nickname, activeyn, deleteyn, regdate, deletedate) values (?, ?, ?, 'N', 'N', now(), null)`;
       this.params = [

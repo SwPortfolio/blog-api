@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { MemberModel } from './member.model';
+import { SignUpMemberDto } from './member.dto';
 
 @Injectable()
 export class MemberService {
@@ -30,7 +31,7 @@ export class MemberService {
     }
   }
 
-  async signUpMember(signUpDto: any) {
+  async signUpMember(signUpDto: SignUpMemberDto) {
     try {
       this.connection = await this.databaseService.getDbConnection();
       this.connection.beginTransaction();
