@@ -1,4 +1,4 @@
-// connection.service.ts
+// database.service.ts
 
 import { Injectable, OnModuleInit } from '@nestjs/common';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -7,8 +7,9 @@ import { ConfigService } from '@nestjs/config';
 import { Configuration } from '../config/configuration.interface';
 
 @Injectable()
-export class ConnectionService implements OnModuleInit {
+export class DatabaseService implements OnModuleInit {
   public CP;
+  public connection;
   constructor(private readonly configService: ConfigService) {}
 
   async onModuleInit() {
@@ -25,5 +26,27 @@ export class ConnectionService implements OnModuleInit {
     });
 
     console.log(`✅ START CONNECTION 🚀 `);
+  }
+
+  /**
+   * connection 가져오기
+   */
+  async getConnection() {
+    return await this.CP.getConnection();
+  }
+
+  /**
+   * 쿼리 보내기
+   * @param connection
+   * @param sql
+   * @param params
+   */
+  async dbQuery(connection, sql: string, params: any[]) {
+    try {
+      const queryset = await connection.query(sql, params);
+      return queryset[0];
+    } catch (err) {
+      throw err;
+    }
   }
 }
