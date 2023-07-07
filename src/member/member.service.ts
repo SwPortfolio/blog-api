@@ -13,7 +13,11 @@ export class MemberService {
   async getMember(memberpkey) {
     try {
       this.connection = await this.databaseService.getConnection();
-      return await this.memberModel.getMember(this.connection, memberpkey);
+      const memberSet = await this.memberModel.getMember(
+        this.connection,
+        memberpkey,
+      );
+      return memberSet[0];
     } catch (err) {
       throw err;
     } finally {

@@ -42,7 +42,6 @@ export class DatabaseService implements OnModuleInit {
    * @param params
    */
   async dbQuery(connection, sql: string, params: any[]) {
-    console.log('dbQuery');
     try {
       const querySet = await connection.query(sql, params);
 
