@@ -9,6 +9,10 @@ export class MemberModel {
 
   constructor(private readonly databaseService: DatabaseService) {}
 
+  /**
+   * 회원 조회
+   * @param memberpkey
+   */
   async getMember(memberpkey) {
     try {
       this.connection = await this.databaseService.getConnection();
