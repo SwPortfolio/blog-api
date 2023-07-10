@@ -7,25 +7,27 @@ import {
   Post,
   Body,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { MemberService } from './member.service';
 import { response } from '../utils/response';
-import { GetMemberDto, SignUpMemberDto } from './member.dto';
+import { SignUpMemberDto } from './member.dto';
 import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('member')
 export class MemberController {
   constructor(private readonly memberService: MemberService) {}
 
+  /**
+   * 회원 상세조회
+   * @param req
+   * @param res
+   */
   @UseGuards(AuthGuard)
   @Get()
-  async getMember(
-    @Res() res,
-    @Query() getMemberDto: GetMemberDto,
-  ): Promise<string> {
+  async getMember(@Request() req, @Res() res): Promise<string> {
     try {
-      const { memberpkey } = getMemberDto;
-      const member = await this.memberService.getMember(memberpkey);
+      const member = await this.memberService.getMember(req.memberpkey);
       let resCode: string;
       if (member !== null) {
         resCode = '0000';
@@ -40,6 +42,11 @@ export class MemberController {
     }
   }
 
+  /**
+   * 회원가입
+   * @param res
+   * @param signUpDto
+   */
   @Post('/sign-up')
   async signUpMember(@Res() res, @Body() signUpDto: SignUpMemberDto) {
     try {
