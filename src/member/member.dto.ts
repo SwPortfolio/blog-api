@@ -27,3 +27,13 @@ export class SignUpMemberDto {
   @Length(2, 15)
   nickname: string;
 }
+
+export class LoginInMemberDto {
+  @IsEmail()
+  @IsNotEmpty()
+  memberemail: string;
+
+  @IsString()
+  @IsNotEmpty()
+  memberpwd: string;
+}

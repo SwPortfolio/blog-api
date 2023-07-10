@@ -11,12 +11,16 @@ export class MemberService {
     private readonly memberModel: MemberModel,
   ) {}
 
-  async getMember(memberpkey: number) {
+  /**
+   * 로그인) 이메일로 회원 조회
+   * @param memberemail
+   */
+  async getMember(memberemail: string) {
     try {
       this.connection = await this.databaseService.getDbConnection();
       const memberSet = await this.memberModel.getMember(
         this.connection,
-        memberpkey,
+        memberemail,
       );
 
       if (memberSet.length === 0) {
@@ -31,6 +35,10 @@ export class MemberService {
     }
   }
 
+  /**
+   * 회원가입) 회원저장
+   * @param signUpDto
+   */
   async signUpMember(signUpDto: SignUpMemberDto) {
     try {
       this.connection = await this.databaseService.getDbConnection();
