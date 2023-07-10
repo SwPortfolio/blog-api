@@ -11,10 +11,14 @@ import { MemberService } from './services/member.service';
 import { response } from '../utils/response';
 import { SignUpMemberDto } from './member.dto';
 import { AuthGuard } from '../auth/auth.guard';
+import { ResponseService } from '../util/response.service';
 
 @Controller('member')
 export class MemberController {
-  constructor(private readonly memberService: MemberService) {}
+  constructor(
+    private readonly memberService: MemberService,
+    private readonly responseService: ResponseService,
+  ) {}
 
   /**
    * 회원 상세조회
@@ -50,9 +54,9 @@ export class MemberController {
   async signUpMember(@Res() res, @Body() signUpDto: SignUpMemberDto) {
     try {
       await this.memberService.signUpMember(signUpDto);
-      return response(res, 200, '0000', '', {});
+      return this.responseService.response(res, 200, '0000', '', {});
     } catch (err) {
-      return response(res, 500, '9999', err.message, err);
+      return this.responseService.response(res, 500, '9999', err.message, err);
     }
   }
 }

@@ -7,17 +7,19 @@ import { MemberModule } from './member/member.module';
 import { DatabaseModule } from './database/database.module';
 import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
+import { UtilModule } from './util/util.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
+      isGlobal: true, // 다른 모듈에서 별도의 설정없이 환경변수의 사용이 가능합니다.
       load: [configuration],
     }),
     MemberModule,
     DatabaseModule,
     CategoryModule,
     AuthModule,
+    UtilModule,
   ],
   controllers: [AppController],
   providers: [AppService],
