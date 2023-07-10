@@ -1,12 +1,23 @@
-import { Controller, Get, Res, Query, Param, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Res,
+  Query,
+  Param,
+  Post,
+  Body,
+  UseGuards,
+} from '@nestjs/common';
 import { MemberService } from './member.service';
 import { response } from '../utils/response';
 import { GetMemberDto, SignUpMemberDto } from './member.dto';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('member')
 export class MemberController {
   constructor(private readonly memberService: MemberService) {}
 
+  @UseGuards(AuthGuard)
   @Get()
   async getMember(
     @Res() res,
