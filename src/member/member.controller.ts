@@ -7,7 +7,7 @@ import {
   UseGuards,
   Request,
 } from '@nestjs/common';
-import { MemberService } from './member.service';
+import { MemberService } from './services/member.service';
 import { response } from '../utils/response';
 import { SignUpMemberDto } from './member.dto';
 import { AuthGuard } from '../auth/auth.guard';

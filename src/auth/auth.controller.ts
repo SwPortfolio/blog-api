@@ -7,7 +7,7 @@ import {
   Res,
   Body,
 } from '@nestjs/common';
-import { LoginService } from './login.service';
+import { LoginService } from './services/login.service';
 import { AuthGuard } from './auth.guard';
 import { response } from '../utils/response';
 import { LoginInMemberDto } from '../member/member.dto';

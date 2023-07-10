@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
-import { MemberModel } from './member.model';
-import { SignUpMemberDto } from './member.dto';
+import { DatabaseService } from '../../database/database.service';
+import { MemberModel } from '../member.model';
+import { SignUpMemberDto } from '../member.dto';
 
 @Injectable()
 export class MemberService {

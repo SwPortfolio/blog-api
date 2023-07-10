@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { MemberService } from '../member/member.service';
+import { MemberService } from '../../member/services/member.service';
 import { JwtService } from '@nestjs/jwt';
-import { MemberTokenService } from '../member/memberToken.service';
-import { LoginInMemberDto } from '../member/member.dto';
+import { MemberTokenService } from '../../member/services/memberToken.service';
+import { LoginInMemberDto } from '../../member/member.dto';
 
 @Injectable()
 export class LoginService {

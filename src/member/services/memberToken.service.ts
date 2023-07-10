@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
-import { MemberModel } from './member.model';
+import { DatabaseService } from '../../database/database.service';
+import { MemberModel } from '../member.model';
 
 @Injectable()
 export class MemberTokenService {
