@@ -11,13 +11,13 @@ import { MemberService } from './services/member.service';
 import { response } from '../utils/response';
 import { SignUpMemberDto } from './member.dto';
 import { AuthGuard } from '../auth/auth.guard';
-import { ResponseService } from '../util/response.service';
+import { ResponseUtil } from '../util/response.util';
 
 @Controller('member')
 export class MemberController {
   constructor(
     private readonly memberService: MemberService,
-    private readonly responseService: ResponseService,
+    private readonly responseService: ResponseUtil,
   ) {}
 
   /**

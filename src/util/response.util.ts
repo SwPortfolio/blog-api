@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class ResponseService {
+export class ResponseUtil {
   private res: any;
   private statusCode: number;
   private resCode: string;

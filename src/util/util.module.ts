@@ -1,9 +1,9 @@
-import { Global, Module } from "@nestjs/common";
-import { ResponseService } from './response.service';
+import { Global, Module } from '@nestjs/common';
+import { ResponseUtil } from './response.util';
 
 @Global()
 @Module({
-  providers: [ResponseService],
-  exports: [ResponseService],
+  providers: [ResponseUtil],
+  exports: [ResponseUtil],
 })
 export class UtilModule {}
