@@ -2,8 +2,6 @@ import {
   Controller,
   Get,
   Res,
-  Query,
-  Param,
   Post,
   Body,
   UseGuards,
@@ -20,11 +18,12 @@ export class MemberController {
 
   /**
    * 회원 상세조회
+   * token 검증
    * @param req
    * @param res
    */
-  @UseGuards(AuthGuard)
   @Get()
+  @UseGuards(AuthGuard) // 배열로 사용할 수 있다.
   async getMember(@Request() req, @Res() res): Promise<string> {
     try {
       const member = await this.memberService.getMember(req.memberpkey);
