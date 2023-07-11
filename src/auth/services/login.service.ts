@@ -24,11 +24,10 @@ export class LoginService {
 
     if (this.member !== null) {
       // 이메일로 회원 조회 성공
-      // TODO: 비밀번호 검증
+      // 비밀번호 검증
       this.passValid = await this.passwordUtil.verifyPassword(
         loginInDto.memberpwd,
-        this.member.memberpwd.split('.')[1],
-        this.member.memberpwd.split('.')[0],
+        this.member.memberpwd,
       );
 
       if (this.passValid) {

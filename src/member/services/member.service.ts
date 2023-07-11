@@ -50,7 +50,7 @@ export class MemberService {
         signUpDto.memberpwd,
       );
       console.log('test : ', test);
-      signUpDto.memberpwd = `${test.hashedPassword}.${test.salt}`;
+      signUpDto.memberpwd = `${test.salt}$${test.hashedPassword}`;
 
       await this.memberModel.signUp(this.connection, signUpDto);
 

@@ -8,17 +8,15 @@ const crypto = require('crypto');
 
 @Injectable()
 export class PasswordUtil {
-  private readonly randomBytesPromise: any;
   private readonly pbkdf2Promise: any;
 
   constructor() {
     this.pbkdf2Promise = util.promisify(crypto.pbkdf2);
-    this.randomBytesPromise = util.promisify(crypto.randomBytes);
   }
 
   async createSalt() {
-    const buf = await this.randomBytesPromise(64);
-    return buf.toString('base64');
+    const buf = crypto.randomBytes(6);
+    return buf.toString('hex');
   }
 
   /**
@@ -34,22 +32,13 @@ export class PasswordUtil {
 
   /**
    * 비밀번호 검증
-   * @param password
-   * @param userSalt
-   * @param userPassword
+   * @param password: 검증할 비밀번호
+   * @param memberpwd: 저장된 비밀번호
    */
-  async verifyPassword(
-    password: string,
-    userSalt: string,
-    userPassword: string,
-  ) {
-    const key = await this.pbkdf2Promise(
-      password,
-      userSalt,
-      104906,
-      64,
-      'sha512',
-    );
+  async verifyPassword(password: string, memberpwd: string) {
+    const [salt, userPassword] = memberpwd.split('$');
+
+    const key = await this.pbkdf2Promise(password, salt, 104906, 64, 'sha512');
     const hashedPassword = key.toString('base64');
 
     return hashedPassword === userPassword;
