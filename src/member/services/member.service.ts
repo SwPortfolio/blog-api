@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
 import { MemberModel } from '../member.model';
 import { SignUpMemberDto } from '../member.dto';
+import { PasswordUtil } from '../../util/password.util';
 
 @Injectable()
 export class MemberService {
@@ -9,6 +10,7 @@ export class MemberService {
   constructor(
     private readonly databaseService: DatabaseService,
     private readonly memberModel: MemberModel,
+    private readonly passwordUtil: PasswordUtil,
   ) {}
 
   /**
@@ -43,6 +45,12 @@ export class MemberService {
     try {
       this.connection = await this.databaseService.getDbConnection();
       this.connection.beginTransaction();
+      console.log('11111111');
+      const test = await this.passwordUtil.createHashedPassword(
+        signUpDto.memberpwd,
+      );
+      console.log('test : ', test);
+      signUpDto.memberpwd = `${test.hashedPassword}.${test.salt}`;
 
       await this.memberModel.signUp(this.connection, signUpDto);
 

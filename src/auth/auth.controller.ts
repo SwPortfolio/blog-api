@@ -20,7 +20,7 @@ export class AuthController {
   ) {}
 
   @Post('/login')
-  async signIn(@Res() res, @Body() loginInDto: LoginInMemberDto) {
+  async loginIn(@Res() res, @Body() loginInDto: LoginInMemberDto) {
     // Generate a JWT and return it here
     // instead of the user object
     const loginResult = await this.authService.loginIn(loginInDto);

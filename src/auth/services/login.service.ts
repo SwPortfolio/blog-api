@@ -3,6 +3,7 @@ import { MemberService } from '../../member/services/member.service';
 import { JwtService } from '@nestjs/jwt';
 import { MemberTokenService } from '../../member/services/memberToken.service';
 import { LoginInMemberDto } from '../../member/member.dto';
+import { PasswordUtil } from "../../util/password.util";
 
 @Injectable()
 export class LoginService {
@@ -14,21 +15,25 @@ export class LoginService {
     private memberService: MemberService,
     private jwtService: JwtService,
     private memberTokenService: MemberTokenService,
+    private passwordUtil: PasswordUtil,
   ) {}
 
   async loginIn(loginInDto: LoginInMemberDto) {
-    const { memberemail, memberpwd } = loginInDto;
     // 이메일로 회원 조회
-    this.member = await this.memberService.getMember(memberemail);
+    this.member = await this.memberService.getMember(loginInDto.memberemail);
 
     if (this.member !== null) {
       // 이메일로 회원 조회 성공
       // TODO: 비밀번호 검증
-      if (memberpwd !== this.member.memberpwd) {
-        // 비밀번호가 일치하지 않음
-        this.passValid = false;
-      } else {
+      this.passValid = await this.passwordUtil.verifyPassword(
+        loginInDto.memberpwd,
+        this.member.memberpwd.split('.')[1],
+        this.member.memberpwd.split('.')[0],
+      );
+
+      if (this.passValid) {
         // 비밀번호 일치
+        delete this.member.memberpwd;
         // Generate a JWT and return it here
         const payload = {
           sub: this.member.memberpkey,
@@ -41,7 +46,8 @@ export class LoginService {
           this.member.memberpkey,
           this.token,
         );
-        // instead of the user object
+      } else {
+        // 비밀번호 일치하지 않음
       }
     }
     return {
