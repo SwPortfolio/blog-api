@@ -51,4 +51,20 @@ export class MemberTokenService {
       this.connection.release();
     }
   }
+
+  /**
+   * 회원 토큰 삭제
+   * @param memberpkey
+   */
+  async deleteMemToken(memberpkey: number) {
+    try {
+      this.connection = await this.databaseService.getDbConnection();
+      await this.memberModel.deleteMemToken(this.connection, memberpkey);
+      return true;
+    } catch (err) {
+      throw err;
+    } finally {
+      this.connection.release();
+    }
+  }
 }

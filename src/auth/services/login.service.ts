@@ -40,6 +40,8 @@ export class LoginService {
         };
         // jwt 토큰 발급
         this.token = await this.jwtService.signAsync(payload);
+        // 토큰 삭제
+        await this.memberTokenService.deleteMemToken(this.member.memberpkey);
         // 토큰 저장
         await this.memberTokenService.processMemToken(
           this.member.memberpkey,

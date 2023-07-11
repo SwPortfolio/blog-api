@@ -27,7 +27,7 @@ export class PasswordUtil {
     const salt = await this.createSalt();
     const key = await this.pbkdf2Promise(password, salt, 104906, 64, 'sha512');
     const hashedPassword = key.toString('base64');
-    return { hashedPassword, salt };
+    return `${salt}$${hashedPassword}`;
   }
 
   /**

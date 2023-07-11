@@ -85,4 +85,23 @@ export class MemberModel {
       throw err;
     }
   }
+
+  /**
+   * 회원 토큰 삭제
+   * @param connection
+   * @param memberpkey
+   */
+  async deleteMemToken(connection: any, memberpkey: number) {
+    try {
+      this.sql = `delete from membertoken where memberpkey=?`;
+      this.params = [memberpkey];
+      return await this.databaseService.dbQuery(
+        connection,
+        this.sql,
+        this.params,
+      );
+    } catch (err) {
+      throw err;
+    }
+  }
 }

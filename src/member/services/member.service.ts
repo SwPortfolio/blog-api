@@ -45,12 +45,10 @@ export class MemberService {
     try {
       this.connection = await this.databaseService.getDbConnection();
       this.connection.beginTransaction();
-      console.log('11111111');
-      const test = await this.passwordUtil.createHashedPassword(
+      // 비밀번호 암호화
+      signUpDto.memberpwd = await this.passwordUtil.createHashedPassword(
         signUpDto.memberpwd,
       );
-      console.log('test : ', test);
-      signUpDto.memberpwd = `${test.salt}$${test.hashedPassword}`;
 
       await this.memberModel.signUp(this.connection, signUpDto);
 
