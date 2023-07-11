@@ -8,7 +8,6 @@ import {
   Request,
 } from '@nestjs/common';
 import { MemberService } from './services/member.service';
-import { response } from '../utils/response';
 import { SignUpMemberDto } from './member.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { ResponseUtil } from '../util/response.util';
@@ -37,11 +36,11 @@ export class MemberController {
       } else {
         resCode = '0001';
       }
-      return response(res, 200, resCode, '', {
+      return this.responseService.response(res, 200, resCode, '', {
         member: member,
       });
     } catch (err) {
-      return response(res, 500, '9999', err.message, {});
+      return this.responseService.response(res, 500, '9999', err.message, {});
     }
   }
 
