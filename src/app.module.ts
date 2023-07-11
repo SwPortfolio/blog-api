@@ -8,6 +8,7 @@ import { DatabaseModule } from './database/database.module';
 import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
 import { UtilModule } from './util/util.module';
+import { BlogModule } from './blog/blog.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UtilModule } from './util/util.module';
     CategoryModule,
     AuthModule,
     UtilModule,
+    BlogModule,
   ],
   controllers: [AppController],
   providers: [AppService],
