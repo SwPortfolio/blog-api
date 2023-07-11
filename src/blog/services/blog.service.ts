@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
-import { BlogModel } from '../blog.model';
-import { GetBlogDto, RegisterBlogDto } from "../blog.dto";
+import { BlogModel } from '../models/blog.model';
+import { GetBlogDto, RegisterBlogDto } from '../blog.dto';
+import { CategoryModel } from '../models/category.model';
 
 @Injectable()
 export class BlogService {
@@ -9,6 +10,7 @@ export class BlogService {
   constructor(
     private databaseService: DatabaseService,
     private blogModel: BlogModel,
+    private categoryModel: CategoryModel,
   ) {}
 
   /**
@@ -20,11 +22,21 @@ export class BlogService {
     try {
       this.connection = await this.databaseService.getDbConnection();
       this.connection.beginTransaction();
-      await this.blogModel.registerBlog(
+      const blog = await this.blogModel.registerBlog(
         this.connection,
         memberpkey,
         registerBlogDto,
       );
+      const blogpkey = blog.insertId;
+
+      for (const categoryname of registerBlogDto.categoryList) {
+        await this.categoryModel.registerCategory(
+          this.connection,
+          blogpkey,
+          categoryname,
+        );
+      }
+
       this.connection.commit();
       return true;
     } catch (err) {

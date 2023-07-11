@@ -5,7 +5,6 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { MemberModule } from './member/member.module';
 import { DatabaseModule } from './database/database.module';
-import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
 import { UtilModule } from './util/util.module';
 import { BlogModule } from './blog/blog.module';
@@ -18,7 +17,6 @@ import { BlogModule } from './blog/blog.module';
     }),
     MemberModule,
     DatabaseModule,
-    CategoryModule,
     AuthModule,
     UtilModule,
     BlogModule,

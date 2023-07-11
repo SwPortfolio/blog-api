@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
-import { GetBlogDto, RegisterBlogDto } from "./blog.dto";
+import { DatabaseService } from '../../database/database.service';
+import { GetBlogDto, RegisterBlogDto } from "../blog.dto";
 
 @Injectable()
 export class BlogModel {
