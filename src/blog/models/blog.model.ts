@@ -40,7 +40,12 @@ export class BlogModel {
    */
   async getBlog(connection, memberpkey: number, getBlogDto: GetBlogDto) {
     try {
-      this.sql = `select * from blog where memberpkey=? and blogpkey=?`;
+      this.sql = `
+        select blog.blogpkey, blogname, blog.regdate, categoryname
+        from blog
+        left join blogcategory on blog.blogpkey=blogcategory.blogpkey
+        where memberpkey=? and blog.blogpkey=?
+      `;
       this.params = [memberpkey, getBlogDto.blogpkey];
       return await this.databaseService.dbQuery(
         connection,

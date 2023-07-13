@@ -60,7 +60,21 @@ export class BlogService {
         memberpkey,
         getBlogDto,
       );
-      return blogSet.length === 1 ? blogSet[0] : null;
+      if (blogSet.length === 0) return { blog: null, categoryList: [] };
+
+      const blog = {
+        blogpkey: blogSet[0].blogpkey,
+        blogname: blogSet[0].blogname,
+        regdate: blogSet[0].regdate,
+      };
+
+      const categoryList = blogSet.map((blog) => {
+        return {
+          categoryname: blog.categoryname,
+        };
+      });
+
+      return { blog: blog, categoryList: categoryList };
     } catch (err) {
       if (err.name === 'DBError') this.connection.rollback();
       throw err;
