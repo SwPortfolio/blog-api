@@ -8,11 +8,16 @@ export class BlogContentsModel {
   private params: any[];
   constructor(private readonly dataService: DatabaseService) {}
 
-  async registerBlogContents(connection, contentsDto: ContentRegister) {
+  async registerBlogContents(
+    connection,
+    contentsDto: ContentRegister,
+    ccode: string,
+  ) {
     try {
-      this.sql = `insert into blogcontents (blogcategorypkey, title, content, showyn, hits, regdate, modifydate) values (?, ?, ?, 'Y', 0, now(), now())`;
+      this.sql = `insert into blogcontents (blogcategorypkey, ccode, title, content, showyn, hits, regdate, modifydate) values (?, ?, ?, ?, 'Y', 0, now(), now())`;
       this.params = [
         contentsDto.blogcategorypkey,
+        ccode,
         contentsDto.title,
         contentsDto.content,
       ];

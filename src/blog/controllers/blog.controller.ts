@@ -35,7 +35,6 @@ export class BlogController {
     }
   }
 
-  @UseGuards(AuthGuard)
   @Get('')
   async getBlog(@Req() req, @Res() res, @Query() getBlogDto: GetBlogDto) {
     try {

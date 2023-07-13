@@ -1,4 +1,4 @@
-import { Controller, Post, Res, UseGuards, Body } from '@nestjs/common';
+import { Controller, Post, Res, UseGuards, Body, Get } from '@nestjs/common';
 import { ResponseUtil } from '../../util/response.util';
 import { AuthGuard } from '../../auth/auth.guard';
 import { ContentRegister } from '../dtos/blog.contents.dto';
@@ -20,9 +20,17 @@ export class BlogContentsController {
   @Post('/register')
   async contentsRegister(@Res() res, @Body() contentsDto: ContentRegister) {
     try {
-      console.log('contentDto : ', contentsDto);
       await this.blogContentsService.registerContent(contentsDto);
       return this.responseUtil.response(res, 200, '0000', '', {});
+    } catch (err) {
+      return this.responseUtil.response(res, 500, '9999', err.message, err);
+    }
+  }
+
+  @Get('')
+  async getContents(@Res() res) {
+    try {
+      return this.responseUtil.response(res, 200, '0000', '', { contents: {} });
     } catch (err) {
       return this.responseUtil.response(res, 500, '9999', err.message, err);
     }
