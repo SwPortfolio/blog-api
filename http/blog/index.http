@@ -1,0 +1,14 @@
+###
+POST http://localhost:3000/blog/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjY0LCJuaWNrbmFtZSI6IuyDgeqwsSIsImlhdCI6MTY4OTIxMzMxMCwiZXhwIjoxNjg5Mjk5NzEwfQ.T3Bxatwx3D1vWL6ALjwsEX0KKjNkPbmgn9vZCfSPQ_s
+
+{
+  "blogname": "취미 블로그",
+  "categoryList": ["등산"]
+}
+
+###
+GET http://localhost:3000/blog?blogpkey=4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjY0LCJuaWNrbmFtZSI6IuyDgeqwsSIsImlhdCI6MTY4OTIxMzMxMCwiZXhwIjoxNjg5Mjk5NzEwfQ.T3Bxatwx3D1vWL6ALjwsEX0KKjNkPbmgn9vZCfSPQ_s
+
