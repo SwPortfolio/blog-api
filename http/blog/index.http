@@ -1,7 +1,8 @@
 ###
-POST http://localhost:3000/blog/register
+# @name 블로그 채널 생성
+POST {{baseURL}}/blog/register
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjY0LCJuaWNrbmFtZSI6IuyDgeqwsSIsImlhdCI6MTY4OTIxMzMxMCwiZXhwIjoxNjg5Mjk5NzEwfQ.T3Bxatwx3D1vWL6ALjwsEX0KKjNkPbmgn9vZCfSPQ_s
+Authorization: Bearer {{token}}
 
 {
   "blogname": "취미 블로그",
@@ -9,6 +10,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjY0LCJuaWNrb
 }
 
 ###
-GET http://localhost:3000/blog?blogpkey=4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjY0LCJuaWNrbmFtZSI6IuyDgeqwsSIsImlhdCI6MTY4OTIxMzMxMCwiZXhwIjoxNjg5Mjk5NzEwfQ.T3Bxatwx3D1vWL6ALjwsEX0KKjNkPbmgn9vZCfSPQ_s
+# @name 블로그 상세조회
+GET {{baseURL}}/blog?blogpkey=5
+Authorization: Bearer {{token}}
 

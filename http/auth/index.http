@@ -1,4 +1,6 @@
-POST http://localhost:3000/auth/login
+###
+# @name 로그인
+POST {{baseURL}}/auth/login
 Content-Type: application/json
 
 {
