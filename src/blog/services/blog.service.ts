@@ -55,11 +55,12 @@ export class BlogService {
   async getBlog(memberpkey: number, getBlogDto: GetBlogDto) {
     try {
       this.connection = await this.databaseService.getDbConnection();
-      return await this.blogModel.getBlog(
+      const blogSet = await this.blogModel.getBlog(
         this.connection,
         memberpkey,
         getBlogDto,
       );
+      return blogSet.length === 1 ? blogSet[0] : null;
     } catch (err) {
       if (err.name === 'DBError') this.connection.rollback();
       throw err;

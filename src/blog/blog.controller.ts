@@ -28,7 +28,6 @@ export class BlogController {
     @Body() registerBlogDto: RegisterBlogDto,
   ) {
     try {
-      console.log(registerBlogDto);
       await this.blogService.register(req.memberpkey, registerBlogDto);
       return this.responseUtil.response(res, 200, '0000', '', {});
     } catch (err) {

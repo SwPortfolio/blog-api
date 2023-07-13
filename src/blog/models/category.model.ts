@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { DatabaseService } from "../../database/database.service";
+import { Injectable } from '@nestjs/common';
+import { DatabaseService } from '../../database/database.service';
 
 @Injectable()
 export class CategoryModel {
@@ -20,7 +20,7 @@ export class CategoryModel {
   ) {
     try {
       this.sql = `insert into blogcategory (blogpkey, categoryname, regdate) values (?, ?, now())`;
-      this.params = [[blogpkey, categoryname]];
+      this.params = [blogpkey, categoryname];
       return await this.databaseService.dbQuery(
         connection,
         this.sql,
