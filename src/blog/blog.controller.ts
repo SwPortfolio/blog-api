@@ -40,7 +40,10 @@ export class BlogController {
   async getBlog(@Req() req, @Res() res, @Query() getBlogDto: GetBlogDto) {
     try {
       const blog = await this.blogService.getBlog(req.memberpkey, getBlogDto);
-      return this.responseUtil.response(res, 200, '0000', '', { blog: blog });
+      return this.responseUtil.response(res, 200, '0000', '', {
+        blog: blog.blog,
+        categoryList: blog.categoryList,
+      });
     } catch (err) {
       return this.responseUtil.response(res, 500, '9999', err.message, err);
     }

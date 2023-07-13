@@ -11,6 +11,6 @@ Authorization: Bearer {{token}}
 
 ###
 # @name 블로그 상세조회
-GET {{baseURL}}/blog?blogpkey=1
+GET {{baseURL}}/blog?blogpkey=5
 Authorization: Bearer {{token}}
 
