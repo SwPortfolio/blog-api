@@ -19,14 +19,13 @@ export class BlogContentsService {
       this.connection.beginTransaction();
       // 게시물 코드 생성 (년/월/일/밀리세컨드/랜덤수3자리)
       const today = new Date();
-      const regdate = new Date(today);
       const ccode =
-        regdate.getFullYear().toString() +
-        (regdate.getMonth() + 1).toString() +
-        regdate.getDate().toString() +
-        regdate.getHours().toString() +
-        regdate.getMinutes().toString() +
-        regdate.getMilliseconds().toString() +
+        today.getFullYear().toString() +
+        (today.getMonth() + 1).toString() +
+        today.getDate().toString() +
+        today.getHours().toString() +
+        today.getMinutes().toString() +
+        today.getMilliseconds().toString() +
         this.randomCodeUtil.generator(3);
       await this.blogContentModel.registerBlogContents(
         this.connection,
