@@ -11,7 +11,11 @@ export class BlogContentsService {
     private readonly dataService: DatabaseService,
     private readonly blogContentModel: BlogContentsModel,
     private readonly randomCodeUtil: RandomCodeUtil,
-  ) {}
+  ) {
+    this.dataService = dataService;
+    this.blogContentModel = blogContentModel;
+    this.randomCodeUtil = randomCodeUtil;
+  }
 
   async registerContent(contentsDto: ContentRegister) {
     try {
@@ -34,7 +38,6 @@ export class BlogContentsService {
       );
       this.connection.commit();
     } catch (err) {
-      console.log(err);
       if (err.name === 'DBError') {
         this.connection.rollback();
       }

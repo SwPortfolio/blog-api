@@ -6,7 +6,9 @@ import { ContentRegister } from '../dtos/blog.contents.dto';
 export class BlogContentsModel {
   private sql: string;
   private params: any[];
-  constructor(private readonly dataService: DatabaseService) {}
+  constructor(private readonly dataService: DatabaseService) {
+    this.dataService = dataService;
+  }
 
   async registerBlogContents(
     connection,
