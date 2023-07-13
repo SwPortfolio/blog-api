@@ -1,0 +1,11 @@
+###
+# @name 블로그 게시물 작성
+POST {{baseURL}}/blog/contents/register
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "blogcategorypkey": 3,
+  "title": "테스트",
+  "content": "테스트테스트"
+}

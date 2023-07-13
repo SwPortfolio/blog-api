@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
 import { BlogModel } from '../models/blog.model';
-import { GetBlogDto, RegisterBlogDto } from '../blog.dto';
+import { GetBlogDto, RegisterBlogDto } from '../dtos/blog.dto';
 import { CategoryModel } from '../models/category.model';
 
 @Injectable()

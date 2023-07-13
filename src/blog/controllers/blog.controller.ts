@@ -8,10 +8,10 @@ import {
   Get,
   Query,
 } from '@nestjs/common';
-import { ResponseUtil } from '../util/response.util';
-import { AuthGuard } from '../auth/auth.guard';
-import { GetBlogDto, RegisterBlogDto } from './blog.dto';
-import { BlogService } from './services/blog.service';
+import { ResponseUtil } from '../../util/response.util';
+import { AuthGuard } from '../../auth/auth.guard';
+import { GetBlogDto, RegisterBlogDto } from '../dtos/blog.dto';
+import { BlogService } from '../services/blog.service';
 
 @Controller('blog')
 export class BlogController {
