@@ -13,3 +13,9 @@ export class ContentRegisterDto {
   @IsString()
   content: string;
 }
+
+export class GetContentDto {
+  @IsNotEmpty()
+  @IsString()
+  ccode: string;
+}

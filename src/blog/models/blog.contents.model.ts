@@ -28,4 +28,23 @@ export class BlogContentsModel {
       throw err;
     }
   }
+
+  async getBlogContents(connection, ccode) {
+    try {
+      this.sql = `
+        select 
+            blogcategory.blogcategorypkey, blogcontents.blogcontentspkey, 
+            blogcategory.categoryname, blogcontents.title,
+            blogcontents.content, blogcontents.regdate,
+            blogcontents.modifydate, blogcontents.ccode
+        from blogcontents 
+        join blogcategory on blogcontents.blogcategorypkey=blogcategory.blogcategorypkey
+        where blogcontents.ccode=?
+      `;
+      this.params = [ccode];
+      return await this.dataService.dbQuery(connection, this.sql, this.params);
+    } catch (err) {
+      throw err;
+    }
+  }
 }

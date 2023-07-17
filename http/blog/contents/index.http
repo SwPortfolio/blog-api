@@ -12,4 +12,4 @@ Authorization: Bearer {{token}}
 
 ###
 # @name 블로그 게시물 조회
-GET {{baseURL}}/blog/contents/?ccode=1231
+GET {{baseURL}}/blog/contents/?ccode=20237131811721589

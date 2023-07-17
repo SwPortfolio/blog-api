@@ -47,4 +47,21 @@ export class BlogContentsService {
     }
     return true;
   }
+
+  async getBlogContents(ccode: string): Promise<{ blogContents: object }> {
+    try {
+      this.connection = await this.dataService.getDbConnection();
+      const getBlogContents = await this.blogContentModel.getBlogContents(
+        this.connection,
+        ccode,
+      );
+      const blogContents =
+        getBlogContents.length === 0 ? null : getBlogContents[0];
+      return { blogContents: blogContents };
+    } catch (err) {
+      throw err;
+    } finally {
+      this.connection.release();
+    }
+  }
 }
