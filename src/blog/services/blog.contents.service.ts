@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ContentRegister } from '../dtos/blog.contents.dto';
+import { ContentRegisterDto } from '../dtos/blog.contents.dto';
 import { DatabaseService } from '../../database/database.service';
 import { BlogContentsModel } from '../models/blog.contents.model';
 import { RandomCodeUtil } from '../../util/random.code.util';
@@ -17,7 +17,7 @@ export class BlogContentsService {
     this.randomCodeUtil = randomCodeUtil;
   }
 
-  async registerContent(contentsDto: ContentRegister) {
+  async registerContent(contentsDto: ContentRegisterDto) {
     try {
       this.connection = await this.dataService.getDbConnection();
       this.connection.beginTransaction();

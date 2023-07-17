@@ -1,7 +1,7 @@
 import { Controller, Post, Res, UseGuards, Body, Get } from '@nestjs/common';
 import { ResponseUtil } from '../../util/response.util';
 import { AuthGuard } from '../../auth/auth.guard';
-import { ContentRegister } from '../dtos/blog.contents.dto';
+import { ContentRegisterDto } from '../dtos/blog.contents.dto';
 import { BlogContentsService } from '../services/blog.contents.service';
 
 @Controller('blog/contents')
@@ -18,7 +18,7 @@ export class BlogContentsController {
    */
   @UseGuards(AuthGuard)
   @Post('/register')
-  async contentsRegister(@Res() res, @Body() contentsDto: ContentRegister) {
+  async contentsRegister(@Res() res, @Body() contentsDto: ContentRegisterDto) {
     try {
       await this.blogContentsService.registerContent(contentsDto);
       return this.responseUtil.response(res, 200, '0000', '', {});

@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsNumber, IsArray } from 'class-validator';
 
-export class ContentRegister {
+export class ContentRegisterDto {
   @IsNotEmpty()
   @IsNumber()
   blogcategorypkey: number;

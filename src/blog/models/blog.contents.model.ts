@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
-import { ContentRegister } from '../dtos/blog.contents.dto';
+import { ContentRegisterDto } from '../dtos/blog.contents.dto';
 
 @Injectable()
 export class BlogContentsModel {
@@ -12,7 +12,7 @@ export class BlogContentsModel {
 
   async registerBlogContents(
     connection,
-    contentsDto: ContentRegister,
+    contentsDto: ContentRegisterDto,
     ccode: string,
   ) {
     try {
